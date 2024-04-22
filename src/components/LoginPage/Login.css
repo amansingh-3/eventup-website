@@ -81,6 +81,7 @@
 }
 .create-account-links span a {
   color: var(--primary_color);
+  margin-left: 5px;
 }
 
 .or-line {
@@ -156,17 +157,30 @@
 }
 
 @media (max-width: 768px) {
+  .login {
+    overflow: visible;
+  }
   .left-login {
     flex: 0 0 100%;
     max-width: 100%;
+    padding: 10px;
   }
 
   .right-login {
     flex: 0 0 100%;
     max-width: 100%;
+    padding: 50px 10px;
   }
   .remember-me {
+    flex: 0 0 50%;
+    font-size: 13px;
+  }
+  .signup {
     flex: 0 0 100%;
+    font-size: 13px;
+  }
+  .forget-pass a {
+    font-size: 13px;
   }
   .first-name {
     flex: 0 0 100%;
@@ -181,5 +195,8 @@
   }
   .name {
     margin-bottom: 20px;
+  }
+  .create-account-links {
+    font-size: 13px;
   }
 }

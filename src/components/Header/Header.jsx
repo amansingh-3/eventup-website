@@ -16,7 +16,7 @@ const Header = () => {
         <div className="container">
           <div className="navigation">
             <div className="logo">
-              <Link to="#">
+              <Link to="/">
                 <img src={MainLogo} alt="LogoImage" width="181" height="30" />
               </Link>
             </div>
@@ -35,7 +35,7 @@ const Header = () => {
                   <Link to="/FAQs">FAQ's</Link>
                 </li>
                 <li>
-                  <Link to="/blog">Blog</Link>
+                  <Link to="/contactus">Contact Us</Link>
                 </li>
               </ul>
             </div>
@@ -82,19 +82,17 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/blog" onClick={toggle}>
-                      Blog
+                    <Link to="/contactus" onClick={toggle}>
+                      Contact Us
                     </Link>
                   </li>
                 </ul>
               </div>
               <div className="buttons">
-                <Link to="/login.html" className="button--secondary">
-                  {" "}
+                <Link to="/login" className="button--secondary">
                   Log In
                 </Link>
-                <Link to="/signup.html" className="button">
-                  {" "}
+                <Link to="/signup" className="button">
                   Sign Up
                 </Link>
               </div>

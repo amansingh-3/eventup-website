@@ -147,7 +147,7 @@ const SignForm = () => {
                 </div>
               </div>
               <div className="forget-pass-sec">
-                <div className="remember-me">
+                <div className="remember-me signup">
                   <div className="input">
                     <input type="checkbox" />
                   </div>
@@ -156,9 +156,9 @@ const SignForm = () => {
                   </div>
                 </div>
               </div>
-              <div className="form-field input">
+              {/* <div className="form-field input">
                 <input type="submit" value="Sign In" className="form-btn" />
-              </div>
+              </div> */}
               <div className="form-field input">
                 <input
                   type="submit"

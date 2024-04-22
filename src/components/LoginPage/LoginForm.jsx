@@ -140,11 +140,7 @@ const LoginForm = () => {
                 </div>
               </div>
               <div className="form-field input">
-                <input
-                  type="submit"
-                  defaultValue="Sign In"
-                  className="form-btn"
-                />
+                <input type="submit" Value="Sign In" className="form-btn" />
               </div>
             </form>
             <div className="or-line">

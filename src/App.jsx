@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import FAQs from "./pages/FAQs";
 import Events from "./pages/Events";
-import Blog from "./pages/Blog";
+import ContactUs from "./pages/ContactUs";
 
 const App = () => {
   const location = useLocation();
@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/FAQs" element={<FAQs />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/contactus" element={<ContactUs />} />
       </Routes>
 
       {location.pathname !== "/login" && <Footer /> &&
