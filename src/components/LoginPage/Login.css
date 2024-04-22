@@ -1,0 +1,185 @@
+.login {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  align-items: center;
+  height: 100vh;
+}
+.col-login-image h1 {
+  text-align: center;
+  color: #867f7f;
+}
+.col-login-image-brand-section {
+  opacity: 0.6;
+}
+.col-login-image-brand-section .slick-track {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.col-login-image-brand-section a {
+  padding: 10px;
+}
+
+.left-login {
+  background-color: #f8f8f8;
+  flex: 0 0 50%;
+  padding: 20px 40px;
+  max-height: 100%;
+  max-width: 50%;
+}
+.left-login p {
+  text-align: center;
+}
+
+.right-login {
+  flex: 0 0 50%;
+  flex-wrap: wrap;
+  padding: 20px 40px;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  width: 50%;
+  top: 0;
+  bottom: 0;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.form-btn {
+  min-height: 51px;
+}
+.google-btn {
+  width: 100%;
+  outline: 0;
+  padding: 13px 10px;
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  min-height: 51px;
+}
+
+.google-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.google-btn span img {
+  margin-right: 10px;
+}
+.google-btn a {
+  color: black;
+}
+.col-login-form {
+  margin: auto 0;
+}
+
+.create-account-links {
+  padding: 30px 0 0;
+}
+.create-account-links span a {
+  color: var(--primary_color);
+}
+
+.or-line {
+  width: 100%;
+  max-width: 100%;
+}
+.or-line p {
+  text-align: center;
+  position: relative;
+}
+.or-line p::before {
+  content: "";
+  display: block;
+  width: 270px;
+  height: 1px;
+  background: #867f7f;
+  left: 0;
+  top: 50%;
+  position: absolute;
+}
+.or-line p::after {
+  content: "";
+  display: block;
+  width: 270px;
+  height: 1px;
+  background: #867f7f;
+  right: 0;
+  top: 50%;
+  position: absolute;
+}
+.or-line span {
+  background: #fff;
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+}
+.forget-pass-sec {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.remember-me {
+  flex: 0 0 60%;
+  color: #867f7f;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+}
+.remember-me .form-label label {
+  margin: 0;
+}
+.remember-me .input {
+  padding-right: 5px;
+}
+.forget-pass a {
+  color: var(--primary_color);
+}
+/* Sign Up Page CSS */
+.name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.first-name {
+  flex: 0 0 48%;
+}
+
+.last-name {
+  flex: 0 0 48%;
+}
+
+@media (max-width: 768px) {
+  .left-login {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .right-login {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .remember-me {
+    flex: 0 0 100%;
+  }
+  .first-name {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .last-name {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .right-login {
+    position: unset;
+  }
+  .name {
+    margin-bottom: 20px;
+  }
+}

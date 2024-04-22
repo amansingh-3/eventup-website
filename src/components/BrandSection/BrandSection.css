@@ -1,0 +1,14 @@
+.brand-section {
+  background-color: var(--bg-secondary);
+}
+
+.brand-row-wrapper .slick-track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.brand-row-wrapper a {
+  padding: 0 15px;
+  text-align: center;
+}
