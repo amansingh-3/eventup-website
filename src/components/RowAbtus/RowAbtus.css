@@ -35,6 +35,9 @@
 }
 
 @media (max-width: 768px) {
+  .row-wrapper-about-us {
+    padding: 1.74rem 0;
+  }
   .col-about-us-h2 {
     flex: 0 0 100%;
     max-width: 100%;

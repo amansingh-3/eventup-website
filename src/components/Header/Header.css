@@ -82,7 +82,7 @@ header {
   opacity: 0;
   visibility: hidden;
   z-index: 1;
-  transition: all 0.03s;
+  transition: all 0.3s;
 }
 .menu-toggle {
   position: relative;
@@ -117,14 +117,14 @@ header {
 .menu-toggle span:before {
   margin-top: -12px;
   transition-property: margin, transform;
-  transition-duration: 0.2s;
-  transition-delay: 0.2s, 0;
+  transition-duration: 0.3s;
+  transition-delay: 0.3s, 0;
 }
 .menu-toggle span:after {
   margin-top: 12px;
   transition-property: margin, transform;
-  transition-duration: 0.2s;
-  transition-delay: 0.2s, 0;
+  transition-duration: 0.3s;
+  transition-delay: 0.3s, 0;
 }
 
 .menu-toggle-active span {
@@ -160,6 +160,7 @@ header {
     visibility: visible;
     z-index: 9;
     transition: all 0.3s;
+    overflow-y: scroll;
   }
 
   .header-menu-mobile .menu-toggle {

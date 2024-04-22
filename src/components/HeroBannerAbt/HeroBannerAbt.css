@@ -18,6 +18,12 @@
 }
 
 @media (max-width: 768px) {
+  .hero-section {
+    padding: 0;
+  }
+  .faq-section .col-banner-content {
+    margin: 0;
+  }
   .col-hero-banner-h1 {
     flex: 0 0 100%;
     max-width: 100%;
