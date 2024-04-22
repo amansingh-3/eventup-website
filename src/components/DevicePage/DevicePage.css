@@ -39,6 +39,8 @@
   overflow: auto;
   transform: translate(-50%, -50%) scale(0);
   transition: 0.3s ease-in-out;
+  width: calc(100vw - 30px);
+  max-width: 600px;
 }
 .modal-video-wrapper.show {
   visibility: visible;
