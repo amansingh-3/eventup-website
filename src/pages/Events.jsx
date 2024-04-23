@@ -13,6 +13,7 @@ const Events = () => {
         bannerImage={events}
         imgMaxWidth="450px"
       />
+
       <EventsWrap />
     </>
   );

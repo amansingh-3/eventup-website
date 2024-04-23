@@ -1,4 +1,3 @@
-import React from "react";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 import BrandSection from "../components/BrandSection/BrandSection";
 import DevicePage from "../components/DevicePage/DevicePage";
@@ -20,6 +19,7 @@ const Home = () => {
         PButton={<PButton content="Create Conference" />}
         SButton={<SButton content="Watch Story" />}
       />
+
       <BrandSection />
       <DevicePage />
       <Conference />

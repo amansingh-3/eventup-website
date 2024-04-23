@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import MainLogo from "../../assets/Logo.svg";
 import { Link } from "react-router-dom";
 import "../../../global.css";
@@ -32,7 +32,7 @@ const Header = () => {
                   <Link to="/events">Events</Link>
                 </li>
                 <li>
-                  <Link to="/FAQs">FAQ's</Link>
+                  <Link to="/FAQs">FAQ s</Link>
                 </li>
                 <li>
                   <Link to="/contactus">Contact Us</Link>

@@ -1,4 +1,3 @@
-import React from "react";
 import aa from "../../assets/aa.jpg";
 import "./GettingMsg.css";
 

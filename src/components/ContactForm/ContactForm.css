@@ -1,0 +1,43 @@
+.contactform-wrapper {
+  padding-top: 50px;
+}
+
+.wrapper-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.contact-details {
+  max-width: 50%;
+  flex: 0 0 40%;
+}
+.wrapper-inner .col-login-form {
+  max-width: 50%;
+  flex: 0 0 48%;
+}
+
+.phone {
+  flex: 0 0 48%;
+  max-width: 50%;
+}
+.state {
+  flex: 0 0 48%;
+  max-width: 50%;
+}
+
+.googlemaps {
+  padding-top: 80px;
+}
+
+@media (max-width: 767px) {
+  .contact-details {
+    max-width: 100%;
+    flex: auto;
+    margin-bottom: 30px;
+  }
+  .wrapper-inner .col-login-form {
+    max-width: 100%;
+    flex: auto;
+  }
+}

@@ -26,6 +26,7 @@ const EventsWrap = () => {
               desc="Dance on the beats and rhythm of most amazing DJ's "
               cardImage={Concert1}
             />
+
             <Card
               title="Run to Save Tress"
               desc="Booking for Marathon at Sukhna Lake"
