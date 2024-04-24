@@ -11,7 +11,6 @@ const Events = () => {
         heading="Our Events"
         desc="Dive into the best Event handling organization"
         bannerImage={events}
-        imgMaxWidth="450px"
       />
 
       <EventsWrap />

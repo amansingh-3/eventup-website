@@ -7,7 +7,7 @@ const ContactUs = () => {
   return (
     <>
       <HeroBanner
-        heading="Get in Touch!!"
+        heading="Get in Touch !!"
         desc="Let's start a converstaion"
         bannerImage={contactus}
       />

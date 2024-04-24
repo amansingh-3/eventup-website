@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../../global.css";
 import "./ContactForm.css";
 
 const ContactForm = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [inputs, setInputs] = useState({});
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(inputs);
+    // alert(`Thank You for contacting us ${JSON.stringify(inputs.fname)}`);
+    setSubmitted(true);
+    // console.log(submitted);
+  };
+
+  useEffect(() => {
+    console.log(submitted);
+  }, [submitted]);
+
   return (
     <>
       <div className="contactform-wrapper">
@@ -19,10 +40,10 @@ const ContactForm = () => {
               </p>
             </div>
 
-            <div className="col-login-form">
+            <div className={`col-login-form ${submitted ? "toggle " : " "}`}>
               <h2>Contact Us</h2>
               <p className="p-content">We would love to hear from you!</p>
-              <form method="post">
+              <form method="post" onSubmit={handleSubmit}>
                 <div className="form-field email">
                   <div className="form-label">
                     <label htmlFor="email">Email</label>
@@ -31,7 +52,10 @@ const ContactForm = () => {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       placeholder="amansingh@eventup.com"
+                      value={inputs.email || ""}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -41,7 +65,14 @@ const ContactForm = () => {
                       <label htmlFor="fname">First Name</label>
                     </div>
                     <div className="input">
-                      <input type="text" id="fname" placeholder="Aman" />
+                      <input
+                        type="text"
+                        name="fname"
+                        id="fname"
+                        placeholder="Aman"
+                        value={inputs.fname || ""}
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
                   <div className="last-name">
@@ -49,7 +80,14 @@ const ContactForm = () => {
                       <label htmlFor="lname">Last Name</label>
                     </div>
                     <div className="input">
-                      <input type="text" id="lname" placeholder="Singh" />
+                      <input
+                        type="text"
+                        id="lname"
+                        name="lname"
+                        placeholder="Singh"
+                        value={inputs.lname || ""}
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
                 </div>
@@ -63,8 +101,11 @@ const ContactForm = () => {
                       <input
                         type="tel"
                         id="phone"
+                        name="phone"
                         pattern="[0-9]{10}"
                         placeholder="Ten digits code"
+                        value={inputs.phone || ""}
+                        onChange={handleChange}
                         required
                       />
                     </div>
@@ -74,7 +115,12 @@ const ContactForm = () => {
                       <label htmlFor="state">State</label>
                     </div>
                     <div className="input">
-                      <select name="State" id="State" defaultValue="PB">
+                      <select
+                        name="State"
+                        id="State"
+                        defaultValue="PB"
+                        value={inputs.State}
+                        onChange={handleChange}>
                         <option value="AP">Andhra Pradesh</option>
                         <option value="AR">Arunachal Pradesh</option>
                         <option value="AS">Assam</option>
@@ -122,8 +168,11 @@ const ContactForm = () => {
                   <div className="input">
                     <textarea
                       type="textarea"
+                      name="textarea"
                       id="Query"
                       placeholder="Enter your query here ."
+                      value={inputs.textarea}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -137,6 +186,18 @@ const ContactForm = () => {
                 </div>
               </form>
             </div>
+            {submitted ? (
+              <div className={`thanks-contactus ${submitted ? "show " : " "}`}>
+                <p>
+                  Thank You for reaching out to us{" "}
+                  <strong>{inputs.fname}</strong> !! <br />
+                  We will contact you shortly by mail at{" "}
+                  <strong>{inputs.email}</strong>
+                </p>
+              </div>
+            ) : (
+              " "
+            )}
           </div>
         </div>
       </div>

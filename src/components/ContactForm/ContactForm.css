@@ -15,6 +15,7 @@
 .wrapper-inner .col-login-form {
   max-width: 50%;
   flex: 0 0 48%;
+  position: relative;
 }
 
 .phone {
@@ -30,6 +31,15 @@
   padding-top: 80px;
 }
 
+.toggle {
+  display: none;
+}
+.show {
+  display: block;
+}
+.thanks-contactus {
+  display: block;
+}
 @media (max-width: 767px) {
   .contact-details {
     max-width: 100%;
