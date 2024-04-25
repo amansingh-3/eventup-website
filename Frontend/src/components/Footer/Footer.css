@@ -1,0 +1,155 @@
+.footer-row-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 100px;
+}
+.col-ftr-links {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  flex: 0 0 35%;
+}
+.col-ftr-newsletter {
+  flex: 0 0 22%;
+}
+.col-ftr-logo {
+  flex: 0 0 22%;
+}
+.col-ftr-links ul li a {
+  position: relative;
+}
+.col-ftr-links ul li {
+  list-style: none;
+  margin-bottom: 10px;
+  position: relative;
+}
+.col-ftr-links ul li a:before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #57585d;
+  border-radius: 100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.col-ftr-links ul li a:hover:before {
+  opacity: 1;
+}
+
+.col-ftr-links ul li a {
+  color: #57585d;
+  margin-bottom: 5px;
+  padding: 3px 0;
+}
+
+.col-ftr-newsletter .sub-text {
+  font-size: 12px;
+  color: #57585d;
+}
+
+.col-ftr-newsletter input[type="email"] {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+footer {
+  padding-top: 80px 0;
+}
+
+.ftr-copyright {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px 0;
+  border-top: 1px solid #57585d;
+  margin-top: 50px;
+}
+
+.ftr-copyright-list {
+  flex: 0 0 70%;
+  font-size: 16px;
+}
+.ftr-copyright-list ul {
+  display: flex;
+  list-style: none;
+  font-size: 16px;
+}
+.ftr-copyright-list ul li a {
+  color: #57585d;
+  margin-right: 20px;
+}
+
+.ftr-copyright-symbol {
+  margin: 0;
+  color: #57585d;
+  align-items: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1023px) {
+  .footer-row-wrapper {
+    flex-wrap: wrap;
+    padding-top: 50px;
+  }
+
+  .col-ftr-logo {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .col-ftr-links {
+    flex: 0 0 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: left;
+  }
+
+  .col-ftr-newsletter {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .col-ftr-links > div {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .col-ftr-links {
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: left;
+  }
+  .ftr-copyright {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .ftr-copyright-links {
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin-bottom: 10px;
+  }
+  .ftr-copyright-list {
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin-bottom: 10px;
+  }
+  .ftr-copyright-logos {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  .col-ftr-links > div {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+}

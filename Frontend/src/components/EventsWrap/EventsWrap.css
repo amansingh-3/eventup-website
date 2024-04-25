@@ -1,0 +1,25 @@
+.upcoming-events {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.event-heading {
+  padding-top: 100px;
+}
+
+.head1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+  .upcoming-events {
+    flex-direction: column;
+  }
+  .card-wrapper {
+    flex: 0 0 100%;
+    max-width: 80%;
+    margin: 10px auto;
+  }
+}

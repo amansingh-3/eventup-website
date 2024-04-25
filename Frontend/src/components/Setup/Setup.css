@@ -1,0 +1,47 @@
+.setup-row-wrapper {
+  display: flex;
+  justify-content: space-between;
+  background-image: url(../../assets/Maskgroup3.png);
+  background-color: #953314;
+  border-radius: 20px;
+  padding: 70px;
+  align-items: center;
+}
+
+.col-setup-content {
+  flex: 0 0 50%;
+  max-width: 45%;
+  color: #fff;
+}
+.col-setup-buttons .row-banner-btns a {
+  margin: 10px;
+  padding: 16px 24px;
+}
+.setup {
+  padding: 100px 0;
+}
+.setup .row-banner-btns {
+  margin: -10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .setup-row-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+  }
+  .setup {
+    padding: 40px 0;
+  }
+  .col-setup-content {
+    flex: 0 0 100%;
+    align-items: center;
+    max-width: 100%;
+  }
+  .col-setup-buttons {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 50px;
+  }
+}

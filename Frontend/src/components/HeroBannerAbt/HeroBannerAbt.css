@@ -1,0 +1,35 @@
+.hero-section {
+  background-color: var(--neutral_bg_color);
+  padding: 3.74rem 0;
+  color: var(--white);
+}
+.hero-banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.col-hero-banner-h1 {
+  flex: 0 0 40%;
+}
+.col-hero-banner-p {
+  flex: 0 0 50%;
+  color: #c3c3c5;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 0;
+  }
+  .faq-section .col-banner-content {
+    margin: 0;
+  }
+  .col-hero-banner-h1 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .col-hero-banner-p {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
