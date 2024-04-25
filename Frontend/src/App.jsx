@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import FAQs from "./pages/FAQs";
 import Events from "./pages/Events";
 import ContactUs from "./pages/ContactUs";
+import TestBack from "./pages/TestBack";
 
 const App = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/FAQs" element={<FAQs />} />
         <Route path="/events" element={<Events />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/testapi" element={<TestBack />} />
       </Routes>
 
       {location.pathname !== "/login" && <Footer /> &&
