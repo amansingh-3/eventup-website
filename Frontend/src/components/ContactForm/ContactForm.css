@@ -39,6 +39,7 @@
 }
 .thanks-contactus {
   display: block;
+  flex: 0 0 48%;
 }
 .contact-us-logos-wrapper {
   display: flex;

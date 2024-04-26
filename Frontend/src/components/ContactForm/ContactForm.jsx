@@ -12,17 +12,34 @@ const ContactForm = () => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(inputs);
-    // alert(`Thank You for contacting us ${JSON.stringify(inputs.fname)}`);
-    setSubmitted(true);
-    // console.log(submitted);
-  };
+    console.log(inputs, "inputs");
 
-  useEffect(() => {
-    console.log(submitted);
-  }, [submitted]);
+    try {
+      const response = await fetch("http://localhost:3000/contactus", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputs),
+      });
+      if (response.ok) {
+        console.log("Message sent successfully!");
+        setSubmitted(true);
+        // setInputs({});
+      } else {
+        console.error(
+          "Failed to send message. Server responded with status:",
+          response
+        );
+        setSubmitted(false);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setSubmitted(false);
+    }
+  };
 
   return (
     <>
@@ -94,7 +111,7 @@ const ContactForm = () => {
             <div className={`col-login-form ${submitted ? "toggle " : " "}`}>
               <h2>Contact Us</h2>
               <p className="p-content">We would love to hear from you!</p>
-              <form method="post" onSubmit={handleSubmit}>
+              <form method="POST" onSubmit={handleSubmit}>
                 <div className="form-field email">
                   <div className="form-label">
                     <label htmlFor="email">Email</label>
