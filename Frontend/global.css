@@ -132,6 +132,7 @@ select {
 
 .form-field {
   margin-bottom: 20px;
+  position: relative;
 }
 
 @media (max-width: 1024px) {

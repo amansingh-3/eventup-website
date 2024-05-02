@@ -1,0 +1,41 @@
+.toggle {
+  display: none;
+}
+
+.right-login .thanks-signup {
+  visibility: hidden;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.6s;
+}
+.right-login .thanks-signup.pop {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.6s;
+}
+
+.error-form {
+  position: absolute;
+  bottom: -7px;
+  left: 10px;
+}
+
+.error-form span {
+  display: block;
+  background-color: #e14817;
+  color: white;
+  padding: 1px 18px;
+  border: 1px solid #e14817;
+  border-radius: 9px;
+  font-size: 12px;
+}
+
+.error-form span.active {
+  opacity: 1; /* Set height to auto when active */
+  transition: opacity 1.3s ease-in-out;
+}
+
+.input.active {
+  border: 2px solid #e14817;
+  border-radius: 9px;
+}

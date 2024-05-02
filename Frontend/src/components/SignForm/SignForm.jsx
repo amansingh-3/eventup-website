@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import blogo1 from "../../assets/content-1.svg";
 import blogo2 from "../../assets/content.svg";
 import blogo3 from "../../assets/content2.svg";
@@ -6,14 +6,65 @@ import blogo4 from "../../assets/content3.svg";
 import blogo5 from "../../assets/content4.svg";
 import ConferenceIMG from "../../assets/conference.png";
 import GoogleLogo from "../../assets/google-logo.svg";
+import logoIMG from "../../assets/Logo.svg";
 import "../../../global.css";
 import "./SignForm.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
+import PButton from "../..//components/PrimaryButton/PButton";
 
 const SignForm = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [inputs, setInputs] = useState({});
+
+  const [error, setError] = useState("");
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(inputs, "inputs");
+
+    try {
+      const response = await fetch("http://localhost:3000/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputs),
+      });
+      if (response.ok) {
+        console.log("Message sent successfully!");
+
+        setSubmitted(true);
+        // setInputs({});
+      } else {
+        const errorMessage = await response.json();
+        console.error(
+          "Failed to send message. Server responded with status:",
+          response
+        );
+        throw new Error(errorMessage.message);
+        setSubmitted(false);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      if (error.message.includes("Email already exists")) {
+        // setError("*Email already exists*");
+        setTimeout(() => {
+          setError("Email already exists"); // Update error state to trigger transition
+        }, 200);
+      }
+      setSubmitted(false);
+    }
+  };
+
   let settings = {
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -43,6 +94,30 @@ const SignForm = () => {
       <div className="login sing">
         <div className="left-login">
           <div className="col-login-image">
+            <div className="logo-signup">
+              <Link to="/">
+                <svg
+                  fill="currentColor"
+                  width="15px"
+                  height="15px"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <g data-name="Layer 2">
+                    <g data-name="arrow-back">
+                      <rect
+                        width="24"
+                        height="24"
+                        transform="rotate(90 12 12)"
+                        opacity="0"
+                      />
+
+                      <path d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z" />
+                    </g>
+                  </g>
+                </svg>
+                <p> Back to Home</p>
+              </Link>
+            </div>
             <img
               src={ConferenceIMG}
               alt="login-confernce-image"
@@ -103,18 +178,24 @@ const SignForm = () => {
         </div>
 
         <div className="right-login">
-          <div className="col-login-form">
+          <div className={`col-login-form  ${submitted ? "toggle " : " "}`}>
             <h1>Hi there!</h1>
             <p className="p-content"></p>
             <p>Join us to try the different experiments fot the conference</p>
-            <form method="post">
+            <form method="post" onSubmit={handleSubmit}>
               <div className="name">
                 <div className="first-name form-field">
                   <div className="form-label">
                     <label htmlFor="fname">First Name</label>
                   </div>
                   <div className="input">
-                    <input type="text" id="fname" placeholder="Aman" />
+                    <input
+                      type="text"
+                      name="fname"
+                      placeholder="First Name"
+                      value={inputs.fname || ""}
+                      onChange={handleChange}
+                    />
                   </div>
                 </div>
                 <div className="last-name">
@@ -122,7 +203,14 @@ const SignForm = () => {
                     <label htmlFor="lname">Last Name</label>
                   </div>
                   <div className="input">
-                    <input type="text" id="lname" placeholder="Singh" />
+                    <input
+                      type="text"
+                      id="lname"
+                      name="lname"
+                      placeholder="Last Name"
+                      value={inputs.lname || ""}
+                      onChange={handleChange}
+                    />
                   </div>
                 </div>
               </div>
@@ -130,20 +218,38 @@ const SignForm = () => {
                 <div className="form-label">
                   <label htmlFor="email">Email</label>
                 </div>
-                <div className="input">
+
+                <div className={`input ${error ? "active" : ""}`}>
                   <input
                     type="email"
                     id="email"
-                    placeholder="amansingh@eventup.com"
+                    name="email"
+                    placeholder="abc@eventup.com"
+                    value={inputs.email || ""}
+                    onChange={handleChange}
                   />
                 </div>
+                <div className="error-form">
+                  {error && (
+                    <span className={error ? "active" : ""}>{error}</span>
+                  )}
+                </div>
               </div>
+
               <div className="form-field password">
                 <div className="form-label">
                   <label htmlFor="pass">Password</label>
                 </div>
                 <div className="input">
-                  <input type="password" id="pass" placeholder="Password" />
+                  <input
+                    type="password"
+                    id="pass"
+                    placeholder="Password"
+                    name="current_password"
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+                    value={inputs.current_password || ""}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
               <div className="forget-pass-sec">
@@ -189,6 +295,22 @@ const SignForm = () => {
               </p>
             </div>
           </div>
+
+          {submitted ? (
+            <div className={`thanks-signup ${submitted ? "pop" : " "}`}>
+              <p>
+                Thank You <strong>{inputs.fname}</strong> !! <br />
+                You have successfully created your account, your username is{" "}
+                <strong>{inputs.email}</strong>
+              </p>
+
+              <Link to="/YourEvents">
+                <PButton content="Your Events" />
+              </Link>
+            </div>
+          ) : (
+            " "
+          )}
         </div>
       </div>
     </>

@@ -11,15 +11,20 @@ const HeroBanner = (props) => {
       <section className="hero-banner">
         <div className="container">
           <div className="row-wrapper-content-with-image">
-            <div className="col-banner-content">
-              <h1>{props.heading}</h1>
-              <p>{props.desc}</p>
-              <div className="row-banner-btns">
+            <div className="col-banner-content ">
+              <h1 data-aos="fade-up">{props.heading}</h1>
+              <p data-aos="fade-up" data-aos-delay="600">
+                {props.desc}
+              </p>
+              <div
+                className="row-banner-btns"
+                data-aos="fade-up"
+                data-aos-delay="400">
                 {props.PButton}
                 {props.SButton}
               </div>
             </div>
-            <div className="col-banner-image">
+            <div className="col-banner-image" data-aos="fade-up">
               <img
                 src={props.bannerImage}
                 style={{ maxWidth }}

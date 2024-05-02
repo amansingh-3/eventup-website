@@ -26,6 +26,7 @@ const ContactForm = () => {
       });
       if (response.ok) {
         console.log("Message sent successfully!");
+
         setSubmitted(true);
         // setInputs({});
       } else {
@@ -46,10 +47,10 @@ const ContactForm = () => {
       <div className="contactform-wrapper">
         <div className="container">
           <div className="wrapper-inner">
-            <div className="contact-details">
-              <h2>Event Up Headquaters</h2>
+            <div className="contact-details" data-aos="fade-up">
+              <h2 data-aos="fade-up">Event Up Headquaters</h2>
               <div className="contact-us-logos-wrapper">
-                <div className="logos">
+                <div className="logos" data-aos="fade-up">
                   <svg
                     width="20px"
                     height="20px"
@@ -64,7 +65,7 @@ const ContactForm = () => {
                     />
                   </svg>
                 </div>
-                <div className="content-logos">
+                <div className="content-logos" data-aos="fade-up">
                   <p>
                     159, 9th Cross Sampige Road, Near Central Library,
                     Malleshwaram , Banglore , Karnataka 560003
@@ -72,8 +73,8 @@ const ContactForm = () => {
                 </div>
               </div>
 
-              <div className="contact-us-logos-wrapper">
-                <div className="logos">
+              <div className="contact-us-logos-wrapper" data-aos="fade-up">
+                <div className="logos" data-aos="fade-up">
                   {" "}
                   <svg
                     width="20px"
@@ -100,7 +101,7 @@ const ContactForm = () => {
                     />
                   </svg>
                 </div>
-                <div className="content-logos">
+                <div className="content-logos" data-aos="fade-up">
                   <p>
                     <i>admin123@eventup.com</i>
                   </p>
@@ -108,7 +109,9 @@ const ContactForm = () => {
               </div>
             </div>
 
-            <div className={`col-login-form ${submitted ? "toggle " : " "}`}>
+            <div
+              className={`col-login-form ${submitted ? "toggle " : " "}`}
+              data-aos="fade-up">
               <h2>Contact Us</h2>
               <p className="p-content">We would love to hear from you!</p>
               <form method="POST" onSubmit={handleSubmit}>

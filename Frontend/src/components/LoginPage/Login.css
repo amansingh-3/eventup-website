@@ -25,6 +25,7 @@
 
 .left-login {
   background-color: #f8f8f8;
+  /* overflow: auto; */
   flex: 0 0 50%;
   padding: 20px 40px;
   max-height: 100%;
@@ -44,8 +45,9 @@
   width: 50%;
   top: 0;
   bottom: 0;
-  max-width: 50%;
+  max-width: 100%;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   background-color: white;
 }
@@ -141,6 +143,25 @@
 .forget-pass a {
   color: var(--primary_color);
 }
+.logo-signup a {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+.logo-signup a:hover {
+  color: chocolate;
+}
+.logo-signup svg {
+  flex: 0 0 3%;
+}
+.logo-signup p {
+  flex: 0 0 25%;
+  text-align: left;
+}
+
 /* Sign Up Page CSS */
 .name {
   display: flex;
@@ -159,6 +180,14 @@
 @media (max-width: 768px) {
   .login {
     overflow: visible;
+    height: 100%;
+  }
+  .logo-signup p {
+    flex: 0 0 60%;
+    text-align: left;
+  }
+  .logo-signup svg {
+    flex: 0 0 5%;
   }
   .left-login {
     flex: 0 0 100%;

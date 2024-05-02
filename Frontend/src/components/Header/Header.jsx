@@ -1,15 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MainLogo from "../../assets/Logo.svg";
 import { Link } from "react-router-dom";
 import "../../../global.css";
 import "../Header/Header.css";
+import {
+  doLogout,
+  getCurrentUserDetail,
+  isLoggedIn,
+} from "../../../../Backend/auth";
 
 const Header = () => {
   const [isActive, setActive] = useState(0);
+  const [login, setlogin] = useState(0);
+  const [user, setUser] = useState(undefined);
+
+  useEffect(() => {
+    setlogin(isLoggedIn);
+    setUser(getCurrentUserDetail);
+  }, [login]);
 
   const toggle = () => {
     setActive(!isActive);
   };
+
+  const logout = () => {
+    doLogout(() => {
+      setlogin(false);
+      console.log("Logout");
+    });
+  };
+
   return (
     <>
       <header>
@@ -39,16 +59,30 @@ const Header = () => {
                 </li>
               </ul>
             </div>
-            <div className="buttons">
-              <Link to="/login" className="button--secondary">
-                {" "}
-                Log In
-              </Link>
-              <Link to="/signup" className="button">
-                {" "}
-                Sign Up
-              </Link>
-            </div>
+            {login ? (
+              <div className="buttons">
+                <div className="user-name">
+                  <p>
+                    {user.fname} {user.lname}{" "}
+                  </p>
+                </div>
+                <div className="logout-button">
+                  <Link to="/" className="button " onClick={logout}>
+                    Logout
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <div className="buttons">
+                <Link to="/login" className="button--secondary">
+                  Log In
+                </Link>
+                <Link to="/signup" className="button">
+                  Sign Up
+                </Link>
+              </div>
+            )}
+
             <div className="menu-toggle" onClick={toggle}>
               <span></span>
             </div>

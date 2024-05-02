@@ -68,6 +68,14 @@ header {
   display: none;
 }
 
+.user-name {
+  text-align: center;
+  color: white;
+  flex: 0 0 50%;
+}
+.user-name p {
+  margin: auto 0;
+}
 /* Menu Toggle */
 /* mobile menu toggle button */
 .header-menu-mobile {

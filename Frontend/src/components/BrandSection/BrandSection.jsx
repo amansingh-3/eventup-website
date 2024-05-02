@@ -76,7 +76,7 @@ const BrandSection = () => {
     <>
       <section className="brand-section">
         <div className="container">
-          <div className="brand-row-wrapper">
+          <div className="brand-row-wrapper" data-aos="fade-up">
             <Slider {...settings}>
               {logoData.map((d, index) => (
                 <a className="inner_img" href="#" key={index}>

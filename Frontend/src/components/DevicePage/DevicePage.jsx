@@ -14,7 +14,10 @@ const DevicePage = () => {
       <section className="device-page">
         <div className="container">
           <div className="device-page-row-wrapper">
-            <div className="col-page-image" id="col-page-image">
+            <div
+              className="col-page-image"
+              id="col-page-image"
+              data-aos="fade-up">
               <img src={ConfImg} alt="conference-image" />
               <svg
                 onClick={toggleClick}
@@ -46,8 +49,10 @@ const DevicePage = () => {
               </svg>
             </div>
             <div className="col-page-content">
-              <h2 className="h2-content">Everyone on their own device.</h2>
-              <p className="p-content">
+              <h2 className="h2-content" data-aos="fade-up">
+                Everyone on their own device.
+              </h2>
+              <p className="p-content" data-aos="fade-up" data-aos-delay="300">
                 <strong>EventUp</strong> is designed to be inclusive, by being
                 able to use your own device to help hybrid-conference teams
                 create, collaborate and celebrate together.

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import blogo1 from "../../assets/content-1.svg";
 import blogo2 from "../../assets/content.svg";
 import blogo3 from "../../assets/content2.svg";
@@ -11,9 +11,56 @@ import "./Login.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { doLogin } from "../../../../Backend/auth";
 
 const LoginForm = () => {
+  const [inputs, setInputs] = useState({});
+  const navigate = useNavigate();
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(inputs, "inputs");
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputs),
+      });
+      if (response.ok) {
+        console.log("Login successfully!");
+        const responseData = await response.json();
+        const loginDetails = {
+          fname: responseData.firstName,
+          lname: responseData.lastName,
+        };
+        doLogin(loginDetails, () => {
+          console.log("The data saved in Local Storage");
+        });
+        setTimeout(() => {
+          navigate("/user/dashboard");
+        }, 1000);
+        return <>Will redirect in 3 seconds...</>;
+      } else {
+        const errorMessage = await response.json();
+        console.error(
+          "Failed to send Login. Server responded with status:",
+          response
+        );
+        throw new Error(errorMessage.message);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  };
+
   let settings = {
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -43,6 +90,30 @@ const LoginForm = () => {
       <div className="login">
         <div className="left-login">
           <div className="col-login-image">
+            <div className="logo-signup">
+              <Link to="/">
+                <svg
+                  fill="#000000"
+                  width="15px"
+                  height="15px"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <g data-name="Layer 2">
+                    <g data-name="arrow-back">
+                      <rect
+                        width="24"
+                        height="24"
+                        transform="rotate(90 12 12)"
+                        opacity="0"
+                      />
+
+                      <path d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z" />
+                    </g>
+                  </g>
+                </svg>
+                <p> Back to Home Page </p>
+              </Link>
+            </div>
             <img
               src={ConferenceIMG}
               alt="login-confernce-image"
@@ -105,7 +176,7 @@ const LoginForm = () => {
           <div className="col-login-form">
             <h1>Hi there!</h1>
             <p className="p-content">Build ,innovate and change the world</p>
-            <form method="post">
+            <form method="post" onSubmit={handleSubmit}>
               <div className="form-field email">
                 <div className="form-label">
                   <label htmlFor="email">Email</label>
@@ -113,8 +184,10 @@ const LoginForm = () => {
                 <div className="input">
                   <input
                     type="email"
-                    id="email"
+                    name="email"
                     placeholder="amansingh@eventup.com"
+                    value={inputs.email || ""}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -123,7 +196,13 @@ const LoginForm = () => {
                   <label htmlFor="pass">Password</label>
                 </div>
                 <div className="input">
-                  <input type="password" id="pass" placeholder="Password" />
+                  <input
+                    type="password"
+                    name="current_password"
+                    placeholder="Password"
+                    value={inputs.current_password || ""}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
               <div className="forget-pass-sec">
@@ -140,7 +219,7 @@ const LoginForm = () => {
                 </div>
               </div>
               <div className="form-field input">
-                <input type="submit" Value="Sign In" className="form-btn" />
+                <input type="submit" Value="Log In" className="form-btn" />
               </div>
             </form>
             <div className="or-line">

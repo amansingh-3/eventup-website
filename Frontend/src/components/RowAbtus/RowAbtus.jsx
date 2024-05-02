@@ -8,13 +8,18 @@ const RowAbtus = () => {
       <section>
         <div className="container">
           <div className="row-wrapper-about-us">
-            <div className="col-about-us-h2">
+            <div className="col-about-us-h2" data-aos="fade-up">
               <p>
                 <strong>About Us</strong>
               </p>
-              <h2>We provide enterprises with innovative technology</h2>
+              <h2 data-aos="fade-up">
+                We provide enterprises with innovative technology
+              </h2>
             </div>
-            <div className="col-about-us-p">
+            <div
+              className="col-about-us-p"
+              data-aos="fade-up"
+              data-aos-delay="300">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
                 convallis tortor. Duis vel tincidunt ex. Praesent rhoncus diam
