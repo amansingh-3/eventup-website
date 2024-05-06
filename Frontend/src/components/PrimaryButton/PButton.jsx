@@ -4,9 +4,7 @@ import "../../../global.css";
 const PButton = (props) => {
   return (
     <>
-      <a href="#" className="button">
-        {props.content}
-      </a>
+      <div className="button">{props.content}</div>
     </>
   );
 };

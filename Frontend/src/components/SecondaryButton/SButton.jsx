@@ -4,7 +4,7 @@ import "../../../global.css";
 const SButton = (props) => {
   return (
     <>
-      <a href="#" className="button--secondary" id="button--secondary">
+      <div className="button--secondary" id="button--secondary">
         {props.content}
         <svg
           fill="#ffff"
@@ -23,7 +23,7 @@ const SButton = (props) => {
 	c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"
           />
         </svg>
-      </a>
+      </div>
     </>
   );
 };

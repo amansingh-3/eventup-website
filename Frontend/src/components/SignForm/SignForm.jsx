@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import PButton from "../..//components/PrimaryButton/PButton";
+import { doLogin } from "../../../../Backend/auth";
 
 const SignForm = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -41,7 +42,17 @@ const SignForm = () => {
       });
       if (response.ok) {
         console.log("Message sent successfully!");
+        const responseData = await response.json();
 
+        const loginDetails = {
+          fname: responseData.firstName,
+          lname: responseData.lastName,
+          id: responseData.id,
+        };
+        console.log(loginDetails);
+        doLogin(loginDetails, () => {
+          console.log("The data saved in Local Storage");
+        });
         setSubmitted(true);
         // setInputs({});
       } else {
@@ -304,7 +315,7 @@ const SignForm = () => {
                 <strong>{inputs.email}</strong>
               </p>
 
-              <Link to="/YourEvents">
+              <Link to="/user/dashboard">
                 <PButton content="Your Events" />
               </Link>
             </div>

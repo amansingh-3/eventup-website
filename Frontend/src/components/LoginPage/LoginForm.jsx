@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import blogo1 from "../../assets/content-1.svg";
 import blogo2 from "../../assets/content.svg";
 import blogo3 from "../../assets/content2.svg";
@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Link, useNavigate } from "react-router-dom";
 import { doLogin } from "../../../../Backend/auth";
+import UserDb from "../../pages/UserDb";
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({});
@@ -40,12 +41,14 @@ const LoginForm = () => {
         const loginDetails = {
           fname: responseData.firstName,
           lname: responseData.lastName,
+          id: responseData.id,
         };
         doLogin(loginDetails, () => {
           console.log("The data saved in Local Storage");
         });
         setTimeout(() => {
           navigate("/user/dashboard");
+          <UserDb />;
         }, 1000);
         return <>Will redirect in 3 seconds...</>;
       } else {
@@ -89,11 +92,11 @@ const LoginForm = () => {
     <>
       <div className="login">
         <div className="left-login">
-          <div className="col-login-image">
+          <div className="col-login-image" data-aos="fade-up">
             <div className="logo-signup">
               <Link to="/">
                 <svg
-                  fill="#000000"
+                  fill="currentColor"
                   width="15px"
                   height="15px"
                   viewBox="0 0 24 24"
@@ -111,7 +114,7 @@ const LoginForm = () => {
                     </g>
                   </g>
                 </svg>
-                <p> Back to Home Page </p>
+                <p> Back to Home</p>
               </Link>
             </div>
             <img
@@ -119,14 +122,17 @@ const LoginForm = () => {
               alt="login-confernce-image"
               width="100%"
               height="100%"
+              data-aos="fade-up"
             />
-            <h1 className="h2-all-features h2-content h2">
+            <h1 className="h2-all-features h2-content h2" data-aos="fade-up">
               You'll be in good company
             </h1>
-            <p className="p-all-features p-content h2-content">
+            <p
+              className="p-all-features p-content h2-content"
+              data-aos="fade-up">
               Get started with your free account today
             </p>
-            <div className="col-login-image-brand-section">
+            <div className="col-login-image-brand-section" data-aos="fade-up">
               <Slider {...settings}>
                 <a href="#">
                   <img
@@ -173,7 +179,7 @@ const LoginForm = () => {
           </div>
         </div>
         <div className="right-login">
-          <div className="col-login-form">
+          <div className="col-login-form" data-aos="fade-up">
             <h1>Hi there!</h1>
             <p className="p-content">Build ,innovate and change the world</p>
             <form method="post" onSubmit={handleSubmit}>
@@ -250,4 +256,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default memo(LoginForm);

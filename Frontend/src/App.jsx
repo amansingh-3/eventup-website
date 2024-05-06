@@ -19,7 +19,7 @@ const App = () => {
   const location = useLocation();
   useEffect(() => {
     AOS.init({
-      offset: 140,
+      offset: 130,
       duration: 1200,
       easing: "ease-out-cubic",
       mirror: true,

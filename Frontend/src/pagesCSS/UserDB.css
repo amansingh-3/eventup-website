@@ -1,0 +1,12 @@
+.db-heading h1 {
+  padding: 15px 50px;
+}
+.db-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.db-heading a {
+  padding: 15px 50px;
+}

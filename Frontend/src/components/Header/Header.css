@@ -76,6 +76,10 @@ header {
 .user-name p {
   margin: auto 0;
 }
+.user-name a {
+  text-decoration: none;
+  color: white;
+}
 /* Menu Toggle */
 /* mobile menu toggle button */
 .header-menu-mobile {

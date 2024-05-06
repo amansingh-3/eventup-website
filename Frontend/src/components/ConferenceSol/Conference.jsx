@@ -9,20 +9,17 @@ const Conference = () => {
         <div className="container">
           <div className="conference-sln-row-wrapper">
             <div className="col--conference-content">
-              <h2
-                className="h2-content"
-                data-aos="fade-up"
-                data-aos-delay="500">
+              <h2 className="h2-content" data-aos="fade-up">
                 Powerful virtual conferencing platform solution
               </h2>
-              <p className="p-content" data-aos="fade-up" data-aos-delay="1000">
+              <p className="p-content" data-aos="fade-up">
                 Dedicated spaces that make it easy to come together.
               </p>
             </div>
             <div
               className="col--conference-image"
               data-aos="fade-up"
-              data-aos-delay="900">
+              data-aos-delay="300">
               <img src={ConferenceIMG} alt="conference-image" />
             </div>
           </div>

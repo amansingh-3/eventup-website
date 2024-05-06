@@ -62,9 +62,11 @@ const Header = () => {
             {login ? (
               <div className="buttons">
                 <div className="user-name">
-                  <p>
-                    {user.fname} {user.lname}{" "}
-                  </p>
+                  <Link to="/user/dashboard">
+                    <p>
+                      {user.fname} {user.lname}{" "}
+                    </p>
+                  </Link>
                 </div>
                 <div className="logout-button">
                   <Link to="/" className="button " onClick={logout}>

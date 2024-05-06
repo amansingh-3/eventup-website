@@ -61,10 +61,9 @@ const Accordiontem = ({ question, answer, index, isOpen, toggleAccordion }) => {
       <div className="according-items" data-aos="fade-up">
         <div
           className={`accordion-item ${isOpen ? "open" : "closed"}`}
-          data-aos="fade-up"
           onClick={() => toggleAccordion(index)}>
           <div className="inner_item">
-            <div className="accordion-header" data-aos="fade-up">
+            <div className="accordion-header">
               <div className="accordion-question">{question}</div>
               <div className={`accordion-icon ${isOpen ? "open" : "closed"}`}>
                 <svg

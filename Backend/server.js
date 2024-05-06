@@ -1,7 +1,6 @@
-const express = require("express");
-const { json } = require("express");
-const { createConnection } = require("mysql");
-const cors = require("cors");
+import express from "express";
+import { createConnection } from "mysql";
+import cors from "cors";
 
 const app = express();
 app.use(cors());
@@ -81,7 +80,6 @@ app.post("/signup", (req, res) => {
       res.status(400).json({ message: "Email already exists" });
       return;
     } else {
-      console.log("Email does not exist in the database");
       //SignUp Process
       const sql =
         "INSERT INTO `tbl_users`( `First Name`, `Last Name`, `emailaddress`, `Password`)VALUES ( ?, ?, ?, ?)";
@@ -93,8 +91,41 @@ app.post("/signup", (req, res) => {
           res.status(500).send("Error inserting data");
           return;
         }
-        console.log("Data inserted:", result);
-        res.status(200).send("Data inserted");
+
+        if (result.affectedRows === 1) {
+          const insertedRowId = result.insertId; // Get the ID of the inserted row
+
+          // Fetch the inserted row by its ID
+          const fetchInsertedRowQuery =
+            "SELECT * FROM `tbl_users` WHERE ID = ?";
+          db.query(
+            fetchInsertedRowQuery,
+            [insertedRowId],
+            (fetchErr, fetchResult) => {
+              if (fetchErr) {
+                console.error("Error fetching inserted row:", fetchErr);
+                res.status(500).send("Error fetching inserted row");
+                return;
+              }
+
+              // Extract the inserted row data
+              const insertedRow = fetchResult[0];
+              console.log("Data inserted:", insertedRow);
+
+              // Send the inserted row data back to the client
+              res.status(200).json({
+                message: "Data inserted",
+                firstName: insertedRow["First Name"],
+                lastName: insertedRow["Last Name"],
+                id: insertedRow["ID"],
+              });
+            }
+          );
+        } else {
+          // No rows affected by the insertion
+          console.error("No rows affected by the insertion");
+          res.status(500).send("No rows affected by the insertion");
+        }
       });
     }
   });
@@ -127,15 +158,78 @@ app.post("/login", (req, res) => {
       return;
     }
 
-    res
-      .status(200)
-      .json({
-        message: "Login successful",
-        firstName: user["First Name"],
-        lastName: user["Last Name"],
-      });
+    res.status(200).json({
+      message: "Login successful",
+      firstName: user["First Name"],
+      lastName: user["Last Name"],
+      id: user["ID"],
+    });
   });
 });
+
+app.get("/getEvents", (req, res) => {
+  console.log("Entered Get Events Req");
+
+  const query = "SELECT * FROM`tbl_events`";
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("Error Getting Events:", err);
+      res.status(500).send("Events couldn't load ");
+      return;
+    }
+    if (result && result.length > 0) {
+      res.status(200).json(result);
+      // console.log(result, "result");
+    } else {
+      res.status(200).json({ message: " No Events Data Found" }); // Sending an empty array as there are no e
+    }
+  });
+});
+
+app.post("/register-event", (req, res) => {
+  const { eventId, userID } = req.body;
+  console.log(req.body);
+
+  const sql =
+    "INSERT INTO `tbl_userevents`( `user_id`, `event_id`) VALUES (?,?)";
+  db.query(sql, [userID, eventId], (err, result) => {
+    if (err) {
+      console.error("Error registering for event:", err);
+      return res.status(500).json({ error: "Error registering for event" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Successfully registered for event" });
+  });
+});
+
+app.post("/getUserEvents", (req, res) => {
+  console.log("Entered Get  UsersEvents ");
+
+  const { userId } = req.body;
+  console.log(userId, "user id back");
+  // const query = "SELECT * FROM `tbl_userevents` WHERE `user_id` = ?";
+  const query = `
+  SELECT events.* 
+   FROM tbl_userevents AS user_events
+   INNER JOIN tbl_events AS events ON user_events.event_id = events.id
+   WHERE user_events.user_id = ?`;
+
+  db.query(query, [userId], (err, result) => {
+    if (err) {
+      console.error("Error Getting Users Events:", err);
+      res.status(500).send("Events couldn't load ");
+      return;
+    }
+    if (result && result.length > 0) {
+      res.status(200).json(result);
+      console.log(result, "result");
+    } else {
+      res.status(200).json({ message: " No Events Data Found" }); // Sending an empty array as there are
+    }
+  });
+});
+
 app.listen(3000, () => {
   console.log("listening");
 });
