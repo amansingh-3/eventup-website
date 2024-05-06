@@ -94,7 +94,7 @@ const Card = (props) => {
           <div className="card-wrapper" userid={userID} key={index}>
             <div className="card-body">
               <img
-                src={`../../../src/assets/eventsImages/${event.eventImage}`}
+                src={`../../assets/eventsImages/${event.eventImage}`}
                 alt="Event"
                 width={100}
                 height={100}
