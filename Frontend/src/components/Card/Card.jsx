@@ -86,15 +86,32 @@ const Card = (props) => {
       return "now";
     }
   };
+
+  const sortedEvents = eventsData.sort((a, b) => {
+    const startDateA = new Date(a.eventStartDate);
+    const startDateB = new Date(b.eventStartDate);
+    const currentDate = new Date();
+
+    if (startDateA <= currentDate && startDateB > currentDate) {
+      return -1; // Event A is happening now, should come before Event B
+    } else if (startDateA > currentDate && startDateB <= currentDate) {
+      return 1; // Event B is happening now, should come before Event A
+    } else {
+      // Events are either both happening now or both not happening now,
+      // so sort based on their start dates
+      return startDateA - startDateB;
+    }
+  });
+
   return (
     <>
       {/* <h1>Event Data</h1> */}
       <div className="upcoming-events">
-        {eventsData.map((event, index) => (
+        {sortedEvents.map((event, index) => (
           <div className="card-wrapper" userid={userID} key={index}>
             <div className="card-body">
               <img
-                src={`../../../src/assets/eventsImages/${event.eventImage}`}
+                src={`src/assets/eventsImages/${event.eventImage}`}
                 alt="Event"
                 width={100}
                 height={100}

@@ -22,10 +22,10 @@
 
 .error-form span {
   display: block;
-  background-color: #e14817;
+  background-color: red;
   color: white;
   padding: 1px 18px;
-  border: 1px solid #e14817;
+  border: 1px solid red;
   border-radius: 9px;
   font-size: 12px;
 }
@@ -36,6 +36,6 @@
 }
 
 .input.active {
-  border: 2px solid #e14817;
+  border: 2px solid red;
   border-radius: 9px;
 }

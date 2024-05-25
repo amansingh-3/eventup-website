@@ -8,6 +8,7 @@ const UserDb = () => {
   const [login, setlogin] = useState(0);
   const [user, setUser] = useState(undefined);
   const [eventsData, setEventsData] = useState([]);
+  const [nulldata, setnulldata] = useState(false);
 
   useEffect(() => {
     setlogin(isLoggedIn());
@@ -37,7 +38,16 @@ const UserDb = () => {
             throw new Error("Network response was not ok");
           }
           const data = await response.json();
-          setEventsData(data);
+          if (data.length === 0 || data.message == " No Events Data Found") {
+            setnulldata(true);
+            console.log("if");
+          } else {
+            console.log("else");
+            setEventsData(data);
+          }
+          console.log(nulldata, " nulldata");
+          console.log(data, "data");
+          console.log(eventsData, "events");
         } catch (error) {
           console.error("Error fetching event data:", error);
         }
@@ -91,47 +101,51 @@ const UserDb = () => {
           </div>
 
           <div className="upcoming-events">
-            {eventsData.map((event, index) => (
-              <div className="card-wrapper" key={index}>
-                <div className="card-body">
-                  <img
-                    src={`../../../src/assets/eventsImages/${event.eventImage}`}
-                    alt="Event"
-                    width={100}
-                    height={100}
-                  />
-                  <h3 className="card-title">{event.eventName}</h3>
-                  <p className="card-desc">{event.eventDesc}</p>
-                  <p>
-                    Registration :{" "}
-                    {formatDateRange(event.eventStartDate, event.eventEndDate)}
-                  </p>
-                  {/* <p>To: {formatDate(event.eventEndDate)}</p> */}
-                </div>
-                <button
-                  className={`card-button  cd-button ${getRegistrationStatus(
-                    event.eventStartDate,
-                    event.eventEndDate
-                  )}`}>
-                  {getRegistrationStatus(
-                    event.eventStartDate,
-                    event.eventEndDate
-                  ) === "closed"
-                    ? "Registration Closed"
-                    : getRegistrationStatus(
+            {nulldata
+              ? ""
+              : eventsData.map((event, index) => (
+                  <div className="card-wrapper" key={index}>
+                    <div className="card-body">
+                      <img
+                        src={`../../../src/assets/eventsImages/${event.eventImage}`}
+                        alt="Event"
+                        width={100}
+                        height={100}
+                      />
+                      <h3 className="card-title">{event.eventName}</h3>
+                      <p className="card-desc">{event.eventDesc}</p>
+                      <p>
+                        Registration :
+                        {formatDateRange(
+                          event.eventStartDate,
+                          event.eventEndDate
+                        )}
+                      </p>
+                    </div>
+                    <button
+                      className={`card-button  cd-button ${getRegistrationStatus(
                         event.eventStartDate,
                         event.eventEndDate
-                      ) === "soon"
-                    ? "Coming Soon"
-                    : getRegistrationStatus(
+                      )}`}>
+                      {getRegistrationStatus(
                         event.eventStartDate,
                         event.eventEndDate
-                      ) === "now"
-                    ? "You have already Registered"
-                    : ""}
-                </button>
-              </div>
-            ))}
+                      ) === "closed"
+                        ? "Registration Closed"
+                        : getRegistrationStatus(
+                            event.eventStartDate,
+                            event.eventEndDate
+                          ) === "soon"
+                        ? "Coming Soon"
+                        : getRegistrationStatus(
+                            event.eventStartDate,
+                            event.eventEndDate
+                          ) === "now"
+                        ? "You have already Registered"
+                        : ""}
+                    </button>
+                  </div>
+                ))}
           </div>
         </div>
       </div>

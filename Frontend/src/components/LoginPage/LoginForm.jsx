@@ -17,6 +17,7 @@ import UserDb from "../../pages/UserDb";
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({});
+  const [error, setError] = useState();
   const navigate = useNavigate();
   const handleChange = (event) => {
     const name = event.target.name;
@@ -53,6 +54,9 @@ const LoginForm = () => {
         return <>Will redirect in 3 seconds...</>;
       } else {
         const errorMessage = await response.json();
+        if (errorMessage.message == "Invalid credentials ! Email not found") {
+          setError("Invalid Credentials !");
+        }
         console.error(
           "Failed to send Login. Server responded with status:",
           response
@@ -187,7 +191,7 @@ const LoginForm = () => {
                 <div className="form-label">
                   <label htmlFor="email">Email</label>
                 </div>
-                <div className="input">
+                <div className={`input ${error ? "active" : ""}`}>
                   <input
                     type="email"
                     name="email"
@@ -196,12 +200,17 @@ const LoginForm = () => {
                     onChange={handleChange}
                   />
                 </div>
+                <div className="error-form">
+                  {error && (
+                    <span className={error ? "active" : ""}>{error}</span>
+                  )}
+                </div>
               </div>
               <div className="form-field password">
                 <div className="form-label">
                   <label htmlFor="pass">Password</label>
                 </div>
-                <div className="input">
+                <div className={`input ${error ? "active" : ""}`}>
                   <input
                     type="password"
                     name="current_password"
@@ -209,6 +218,11 @@ const LoginForm = () => {
                     value={inputs.current_password || ""}
                     onChange={handleChange}
                   />
+                </div>
+                <div className="error-form">
+                  {error && (
+                    <span className={error ? "active" : ""}>{error}</span>
+                  )}
                 </div>
               </div>
               <div className="forget-pass-sec">
